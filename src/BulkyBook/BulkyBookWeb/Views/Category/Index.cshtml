@@ -3,6 +3,8 @@
     ViewData["Title"] = "Index";
 }
 
+<partial name="_Notification" />
+
 <div class="container p-3">
     <div class="row pt-4">
         <div class="col-6">
@@ -10,7 +12,7 @@
         </div>
         <div class="col-6 text-end">
             <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
-                Create New Category
+                <i class="bi bi-plus-circle"></i> &nbsp; Create New Category
             </a>
         </div>
     </div>
@@ -26,18 +28,45 @@
             <th>
                 Display order
             </th>
+            <th>
+                Created date
+            </th>
+            <th>
+                
+            </th>
+            <th>
+
+            </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var category in Model)
         {
             <tr>
-                <td width="50%">
+                <td width="30%">
                     @category.Name
                 </td>
-                <td width="50%">
+                <td width="30%">
                     @category.DisplayOrder
                 </td>
+                <td width="30%">
+                    @category.CreatedDate
+                </td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                            <a asp-controller="Category" asp-action="Update" asp-route-id="@category.Id"
+                            class="btn btn-primary mx-2">
+                                <i class="bi bi-pencil-square"></i></a>
+                    </div>
+                </td>
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id"
+                           class="btn btn-danger mx-2">
+                                <i class="bi bi-trash3-fill"></i>
+                            </a>
+                        </div>
+                    </td>
             </tr>
         }
     </tbody>
